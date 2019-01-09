@@ -94,33 +94,11 @@ class AnketaController extends Controller {
             $data=['anketa_aktivna'=>$aktiviraj0];
             $data2=['anketa_aktivna'=>$aktiviraj];
             $rez= DB:: table('anketa')->update($data);
-             $ident = $id;
-              $campaignId=$id;      
-                   $phone= new Phone();
-        $first= $phone->result_first();
-        $second=$phone->result_second($campaignId);
-        $third=$phone->result_third($campaignId);
-        $fourth=$phone->result_fourth($campaignId);
-        $firstfinal=$first->number;
-        $secondfinal=$second->number;
-        $thirdfinal=$third->number;
-        $fourthfinal=$fourth->number;
-        $datetime=Carbon::now();
-        $finaldatetime=$datetime->toDateTimeString();
-        $update= DB::table('phonenumbers')
-                ->where("campaign_id", $campaignId)
-                 ->update([
-                'status' => 'IDLE',
-                'updated_at' => $finaldatetime,
-                'sch_no' => $firstfinal,
-                'idl_no' => $secondfinal,
-                'suc_no' => $thirdfinal,
-                'tot_no' => $fourthfinal
-            ]);
-		$rez2 = DB::table('anketa')
+            $ident = $id;  
+            $rez2 = DB::table('anketa')
 					
-					->where('anketa_id',$ident)
-                                        ->update($data2);
+		->where('anketa_id',$ident)
+                ->update($data2);
                 if($rez2==1){
                 return redirect('/ankete')->with('message','Uspesno ste aktivirali anketu!');
                 }
