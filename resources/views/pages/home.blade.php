@@ -15,7 +15,7 @@
 
         <div class="col-lg-8 col-md-10 mx-auto">
 
-          <h1 class="my-4">ŽAOKA
+          <h1 class="my-4">ŽAOKA Тхе Стинг! ДО јаја филм!
             <small>Predstave trupe i njenih članova</small>
           </h1>
             
