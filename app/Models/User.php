@@ -16,7 +16,7 @@ class UserModel
     public $password;
     public $username;
     public $uloga_id;
-    private $table = 'korisnik';
+    private $table = 'user';
 
     public function insert()
     {
@@ -69,7 +69,7 @@ class UserModel
             ->where([
                 ['username', '=', $this->username],
                 ['password', '=',md5($this->password)]
-            ])->select("korisnik.*")
+            ])->select("user.*")
             ->get()->first();
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Korisnik;
-use App\Models\UserModel;
+use App\Models\User;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -12,15 +12,15 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        $userModel = new Korisnik();
+        $userModel = new User();
         $userModel->username = $request->get("username");
         $userModel->password = $request->get("password");
         $user = $userModel->login();
         if ($user) {
             $request->session()->put('user', $user);
-            return $user->uloga_id == "1" ? redirect(route("korisnici")) : redirect(route("home"));
+            return redirect(route("home"));
         } else {
-             return redirect()->back()->with('alert', 'Uneti podaci nisu ispravni');
+             return redirect()->back()->with('alert', 'Infromation you entered is not valid!');
         }
     }
 
