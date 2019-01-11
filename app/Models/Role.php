@@ -12,7 +12,7 @@ class Role {
         
         public function getRolesByUser($user_id){
 		$rezultat = DB::table('user_role')->get()
-                ->where("id", $id);
+                ->where("user_id", $user_id);
 		return $rezultat;
 	}
         
