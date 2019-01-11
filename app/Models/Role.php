@@ -11,7 +11,8 @@ class Role {
 	}
         
         public function getRolesByUser($user_id){
-		$rezultat = DB::table('user_role')->get();
+		$rezultat = DB::table('user_role')->get()
+                ->where("id", $id);
 		return $rezultat;
 	}
         
