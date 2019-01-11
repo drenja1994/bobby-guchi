@@ -25,7 +25,7 @@ Route::get('/register','FrontendController@registracija');
 
 
 
-Route::get('/logovanje','FrontendController@logovanje');
+Route::get('/userlogin','FrontendController@logovanje');
 Route::post("/do-login", "LoginController@login")->name("login");
 Route::get("/logout", "LoginController@logout")->name("logout");
 Route::group(['middleware' => 'admin'], function() {

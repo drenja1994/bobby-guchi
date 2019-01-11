@@ -10,7 +10,7 @@
               @foreach($menus as $menu)
                 {{-- var_dump($menu) --}}
                 <li class="nav-item {{ ($loop->first)? 'active' : '' }}">
-                  <a class="nav-link" href="{{ asset($menu->link) }}"> {{ $menu->naziv}}
+                  <a class="nav-link" href="{{ asset($menu->link) }}"> {{ $menu->name}}
                       @if($loop->first)
                       <span class="sr-only">(current)</span>
                       @endif
@@ -27,37 +27,13 @@
             @endif
             @if(!session()->has('user'))
            <li class="nav-item">
-                <a class="nav-link" href="{{ asset('/logovanje') }}">
+                <a class="nav-link" href="{{ asset('/userlogin') }}">
                   Login
                 </a>
               </li>
             @endif
-             @if(session()->has('user') && session()->get('user')->uloga_id == '1')
-            <li class="nav-item">
-                <a class="nav-link" href="{{ asset('/create') }}">
-                  Rad sa predstavama
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ asset('/users') }}">
-                  Rad sa korisnicima
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ asset('/komentari') }}">
-                  Rad sa komentarima
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ asset('/ankete') }}">
-                  Rad sa anketama
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ asset('/meni') }}">
-                  Rad sa menijem
-                </a>
-              </li>
+             @if(session()->has('user') && session()->get('user')->ranking_id == '1')
+                ADMIN PANEL LINKS WILL GO HERE IF ADMIN IS LOGGED IN
             @endif
 			</ul>
 

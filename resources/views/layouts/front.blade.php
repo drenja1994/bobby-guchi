@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> ŽAOKA | @yield('title') </title>
+    <title> BOBBY GUCHI SHOPPING | @yield('title') </title>
 
     @section('appendCss')
     <!-- Bootstrap core CSS -->

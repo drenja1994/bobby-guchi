@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Meni;
+use App\Models\Menu;
 use App\Models\Post;
 use App\Models\Komentar;
-use App\Models\Anketa;
 
 class FrontendController extends Controller {
     
@@ -15,8 +14,8 @@ class FrontendController extends Controller {
         
         
         
-        $meni = new Meni();
-        $this->data['menus'] = $meni->getAll();
+        $menu = new Menu();
+        $this->data['menus'] = $menu->getAll();
         
         
     }
@@ -24,10 +23,6 @@ class FrontendController extends Controller {
     public function index(){
         $post = new Post();
         $this->data['posts'] = $post->getAll();
-        $anketa= new Anketa();
-        $this->data['ankete']= $anketa->getAllAk();
-        $odgovori= new Anketa();
-        $this->data['odgovori']= $odgovori->odgovori();
         return view('pages.home', $this->data);
     }
     

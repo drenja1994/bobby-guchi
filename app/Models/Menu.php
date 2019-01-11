@@ -3,18 +3,18 @@
 namespace App\Models;
 use Illuminate\Support\Facades\DB;
 
-class Meni {
+class Menu {
     
     public function getAll(){
-        $rezultat = DB::table("meni")
+        $rezultat = DB::table("menu")
                 ->select('*')
-                ->orderBy('red', 'ASC')
+                ->orderBy('z_order', 'ASC')
                 ->get();
         return $rezultat;
     }
     
     public function getAllid(){
-        $rezultat = DB::table("meni")
+        $rezultat = DB::table("menu")
                 ->select('*')
                 ->orderBy('id', 'ASC')
                 ->get();

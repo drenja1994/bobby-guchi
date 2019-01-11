@@ -3,7 +3,7 @@
 
 namespace App\Models;
 
-class UserModel
+class User
 {
     public $firstname;
     public $lastname;

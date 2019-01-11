@@ -18,8 +18,8 @@ class Post {
         $rezultat = 
                 DB::table($this->table)
                 ->select('*', 'post.id AS postId')
-                ->join('slika','slika.id','=','post.slika_id')
-                ->join('korisnik','korisnik.id','=','post.korisnik_id')
+                //->join('slika','slika.id','=','post.slika_id')
+                ->join('user','user.id','=','post.created_by')
                 ->paginate(2);
         return $rezultat;
     }

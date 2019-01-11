@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        $userModel = new UserModel();
+        $userModel = new User();
         $userModel->username = $request->get("username");
         $userModel->password = $request->get("password");
         $user = $userModel->login();
