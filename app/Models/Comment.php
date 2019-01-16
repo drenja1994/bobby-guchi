@@ -13,23 +13,23 @@ class Comment {
     private $table = 'comment';
       public function getAll(){
        
-        $rezultat = 
+        $result = 
                 DB::table($this->table)
-                ->select('*','komentar.id AS ID')
-                ->join('korisnik','korisnik.id','=','komentar.korisnik_id')
-                ->join('post','post.id','=','komentar.post_id')
+                ->select('*','comment.id AS ID')
+                ->join('user','user.id','=','comment.user_id')
+                ->join('post','post.id','=','comment.post_id')
                 ->get();
                 
-        return $rezultat;
+        return $result;
     }
     public function save() {
-		$rez = DB::table('comment')->insert([
+		$res = DB::table('comment')->insert([
 			'text' => $this->text,
                         'post_id' => $this->post_id,
 			'user_id' => $this->user_id
 			
 		]);
-		return $rez;
+		return $res;
 	}
           public function compost($id){
        $ident=$id;
@@ -46,15 +46,15 @@ class Comment {
     }
     
     public function prihvatanje(){
-        $da=1;
+        $yes=1;
         $data=[
-            'prihvatio'=>$da
+            'isAccepted'=>$da
         ];
-        $rez = DB::table('komentar')
+        $res = DB::table('comment')
 		->where('id',$this->id)
 				->update($data)
 				;
-		return $rez;
+		return $res;
         
     }
 }

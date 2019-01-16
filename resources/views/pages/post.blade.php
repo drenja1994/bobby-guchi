@@ -55,7 +55,8 @@
             </div>
             @endif
             @if(!session()->has('user'))
-            <h5 class="card-info">If you want to posta comment to news, you need to login!</h5>
+            <h5 class="card-info">If you want to posta comment to news, you need to <a class="links"  href="{{ asset('/userlogin') }}">login</a>
+            </h5>
             @endif
           </div>
 		  <!--// Comments Form -->
