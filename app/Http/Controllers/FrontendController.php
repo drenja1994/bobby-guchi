@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\Post;
-use App\Models\Komentar;
+use App\Models\Comment;
 
 class FrontendController extends Controller {
     
@@ -29,8 +29,8 @@ class FrontendController extends Controller {
     public function getPost($id){
         $post = new Post();
         $this->data['singlePost'] = $post->get($id);
-        $komentar = new Komentar();
-        $this->data['komentari']=$komentar->kompost($id);
+        $comments = new Comment();
+        $this->data['comments']=$comments->compost($id);
         return view('pages.post', $this->data);
     }
     

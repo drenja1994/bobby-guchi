@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 use Validator;
-use App\Models\Meni;
+use App\Models\Menu;
 use App\Models\Post;
 use App\Models\Slika;
-use App\Models\Komentar;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 
-class KomentarController extends Controller {
+class CommentController extends Controller {
     //put your code here
     private $data = [];
     
@@ -19,8 +19,8 @@ class KomentarController extends Controller {
         // Zadatak 1 - prikaz stavki menija
         // Pre svega - .env podesiti parametre za pristup bazi
         
-        $meni = new Meni();
-        $this->data['menus'] = $meni->getAll();
+        $menu = new Menu();
+        $this->data['menus'] = $menu->getAll();
         
         // var_dump($this->data['menus']);
     }
@@ -44,23 +44,23 @@ class KomentarController extends Controller {
 
 			
 
-			$komentar = new Komentar();
-			$komentar->korisnik_id = $kident;
+			$komentar = new Comment();
+			$komentar->user_id = $kident;
 			$komentar->post_id = $ident;
-			$komentar->tekst = $request->get('komentarisanje');
+			$komentar->text = $request->get('commentText');
                         
 
 			$rez = $komentar->save();
 			
 			if($rez == 1){
-				return redirect( asset('/posts/'.$ident) )->with('message','Uspešan unos komentara, biće prikazan ako ga administrator odobri!');
+				return redirect( asset('/posts/'.$ident) )->with('message','You have succesfuly added a comment, it will show on page if admins verify it!');
 			}
 			else {
-				return redirect('/')->with('message','Greška pri unosu koemntara!');
+				return redirect('/')->with('message','Error upon entering comment!');
 			}
 		}
 		catch (\Exception $ex){
-			\Log::error('MOJA GRESKA: '.$ex->getMessage());
+			\Log::error('Error: '.$ex->getMessage());
 		}
 	}
         	public function destroy($id){

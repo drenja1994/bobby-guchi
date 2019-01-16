@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('title')
-   PREDSTAVE | {{ $singlePost->naslov }}
+   GUCHI NEWS | {{ $singlePost->title }}
 @endsection
 @section('content')
 
@@ -10,12 +10,12 @@
 
           
           <!-- Title -->
-          <h1 class="mt-4">{{ $singlePost->naslov }}</h1>
+          <h1 class="mt-4">{{ $singlePost->title }}</h1>
 
           <!-- Author -->
           <p class="lead">
-            autor
-            <a href="#">{{ $singlePost->postKorisnik }}</a>
+            created_by
+            <a href="#">{{ $singlePost->postUsername }}</a>
           </p>
 
           <hr>
@@ -25,13 +25,12 @@
 
           <hr>
 
-          <!-- Preview Image -->
-          <img class="img-fluid rounded" src="{{ asset('/'.$singlePost->putanja)}}" alt="{{ $singlePost->alt}}">
+          
 
           <hr>
 
           <!-- Post Content -->
-          <p> {{ $singlePost->sadrzaj }}</p>
+          <p> {{ $singlePost->content }}</p>
           
 		  <hr>
 
@@ -46,27 +45,27 @@
               @if(session()->has('user'))
               <h5 class="card-header">Leave a Comment:</h5>
             <div class="card-body">
-               <form action="{{ asset('/komentar/store/'.$singlePost->postId) }}" method="POST" enctype="multipart/form-data">
+               <form action="{{ asset('/comment/store/'.$singlePost->postId) }}" method="POST" enctype="multipart/form-data">
               {{ csrf_field() }}
                 <div class="form-group">
-                  <textarea name="komentarisanje" class="form-control" rows="3"></textarea>
+                  <textarea name="commentText" class="form-control" rows="3"></textarea>
                 </div>
-                <input type="submit" name="addKorisnik" value="KOMENTARIŠI " class="btn btn-default" />
+                <input type="submit" name="addKorisnik" value="POST A COMMENT " class="btn btn-default" />
               </form>
             </div>
             @endif
             @if(!session()->has('user'))
-            <h5 class="card-info">Ako želite da ostavite komentar, morate se ulogovati!</h5>
+            <h5 class="card-info">If you want to posta comment to news, you need to login!</h5>
             @endif
           </div>
 		  <!--// Comments Form -->
-		  KOMENTARI:
-          @isset($komentari)
-          @foreach($komentari as $komentar)
+		  COMMENTS:
+          @isset($comments)
+          @foreach($comments as $comment)
           <div class="media mb-4">
             <div class="card-header">
-              <h5 class="card-info">{{ $komentar->username }}</h5>
-              {{ $komentar->tekst }}
+              <h5 class="card-info">{{ $comment->username }}</h5>
+              {{ $comment->text }}
             </div>
           </div>
           @endforeach

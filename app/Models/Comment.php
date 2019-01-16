@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
  
-class Komentar {
+class Comment {
      public $id;
-	public $tekst;
+	public $text;
 	public $post_id;
-	public $korisnik_id;
+	public $user_id;
 	
-    private $table = 'komentar';
+    private $table = 'comment';
       public function getAll(){
-        // $rezultat = DB::select("SELECT * FROM post p INNER JOIN slika s ON p.slika_id = s.id INNER JOIN korisnik k ON p.korisnik_id = k.id");
+       
         $rezultat = 
                 DB::table($this->table)
                 ->select('*','komentar.id AS ID')
@@ -23,26 +23,26 @@ class Komentar {
         return $rezultat;
     }
     public function save() {
-		$rez = DB::table('komentar')->insert([
-			'tekst' => $this->tekst,
+		$rez = DB::table('comment')->insert([
+			'text' => $this->text,
                         'post_id' => $this->post_id,
-			'korisnik_id' => $this->korisnik_id
+			'user_id' => $this->user_id
 			
 		]);
 		return $rez;
 	}
-          public function kompost($id){
+          public function compost($id){
        $ident=$id;
-        $rezultat = 
+        $result = 
                 DB::table($this->table)
-                ->select('*','komentar.id AS ID')
-                ->join('korisnik','korisnik.id','=','komentar.korisnik_id')
-                ->join('post','post.id','=','komentar.post_id')
+                ->select('*','comment.id AS ID')
+                ->join('user','user.id','=','comment.user_id')
+                ->join('post','post.id','=','comment.post_id')
                 ->where('post_id','=',$ident)
-                ->where('prihvatio','=',1)
+                ->where('isAccepted','=',1)
                 ->get();
                 
-        return $rezultat;
+        return $result;
     }
     
     public function prihvatanje(){

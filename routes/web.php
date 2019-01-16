@@ -51,5 +51,5 @@ Route::get('/ankete/reskor/','AnketaController@reskorisnik');
 Route::get('/meni/','MeniController@index');
 Route::post('/meni/update','MeniController@update');
     });
-    Route::post('/komentar/store/{id}', 'KomentarController@store');
+    Route::post('/comment/store/{id}', 'CommentController@store');
     Route::post('/odgovori/update','AnketaController@update');

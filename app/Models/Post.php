@@ -25,20 +25,19 @@ class Post {
     }
     
     public function get($id){
-        $rezultat = 
+        $result = 
                 DB::table($this->table)
                 ->select('*', 
                         'post.id AS postId',
-                        'korisnik.username as postKorisnik',
-                        'k.username as komentarKorisnik')
-                ->join('slika','slika.id','=','post.slika_id')
+                        'user.username as postUsername',
+                        'u.username as commentUser')
                 // Komentari se mogu dohvatati i posebnim upitom
-                ->join('korisnik','korisnik.id','=','post.korisnik_id')
-                ->leftJoin('komentar','post.id','=','komentar.post_id')
-                ->leftJoin('korisnik AS k','k.id','=','komentar.korisnik_id')
+                ->join('user','user.id','=','post.created_by')
+                ->leftJoin('comment','post.id','=','comment.post_id')
+                ->leftJoin('user AS u','u.id','=','comment.user_id')
                 ->where('post.id','=',$id)
                 ->first();
-        return $rezultat;
+        return $result;
     }
     
     public function save() {
